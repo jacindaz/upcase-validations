@@ -1,19 +1,37 @@
 <h1>Welcome to My Guestbook</h1>
 <br>
-<%= image_tag("under_construction.gif") %>
 
-<div id="guestbook-entries">
-  <p>Guestbook Entries:</p>
+<% if @guestbook_entry && @guestbook_entry.errors %>
   <ul>
-    <% @guestbook_entries.each do |guestbook_entry| %>
-      <%= guestbook_entry.created_at.strftime("%b %d %Y:") %>
-      <%= guestbook_entry.body %>
+    <% @guestbook_entry.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
   </ul>
+<% end %>
+
+
+<div id="guestbook-entries">
+  <% if @guestbook_entries %>
+    <h2>Guestbook Entries:</h2>
+    <ul>
+      <% @guestbook_entries.each do |guestbook_entry| %>
+        <li>
+          <%= guestbook_entry.body %><%= " (#{guestbook_entry.created_at.strftime("%b %d %Y")})" %>
+        </li>
+
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No entries yet!</p>
+  <% end %>
 </div>
 
+<br>
+<hr>
+<br>
+
 <%= form_for @guestbook_entry do |f| %>
-  <%= f.label :body, "Guestbook Entry:" %>
-  <%= f.text_area :body %>
+  <h2><%= f.label :body, "Guestbook Entry:" %></h2>
+  <%= f.text_area :body, cols: 40, rows: 10 %><br>
   <%= f.submit "Submit" %>
 <% end %>
