@@ -1,7 +1,7 @@
 <h1>Welcome to My Guestbook</h1>
 <br>
 
-<% if @guestbook_entry && @guestbook_entry.errors %>
+<% if @guestbook_entry.errors.any? %>
   <% @guestbook_entry.errors.full_messages.each do |message| %>
     <p style="color: red; font-weight: 800; border: 1px solid red; padding: 1%;">
       <%= message %>
