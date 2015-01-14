@@ -8,7 +8,3 @@ gem "sqlite3"
 group :test do
   gem "capybara"
 end
-
-group :development, :test do
-  gem 'pry-nav'
-end

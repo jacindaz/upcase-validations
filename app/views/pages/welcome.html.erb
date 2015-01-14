@@ -2,11 +2,12 @@
 <br>
 
 <% if @guestbook_entry && @guestbook_entry.errors %>
-  <ul>
-    <% @guestbook_entry.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <% @guestbook_entry.errors.full_messages.each do |message| %>
+    <p style="color: red; font-weight: 800; border: 1px solid red; padding: 1%;">
+      <%= message %>
+    </p>
+  <% end %>
+  <br>
 <% end %>
 
 
